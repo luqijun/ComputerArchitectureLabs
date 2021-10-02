@@ -32,7 +32,17 @@ public:
 	{
 		// TODO: implement!
 
+		unsigned long r1 = RdReg1.to_ulong();
+		unsigned long r2 = RdReg2.to_ulong();
+		unsigned long w1 = WrtReg.to_ulong();
 
+		ReadData1 = bitset<32>(Registers[r1].to_ulong());
+		ReadData2 = bitset<32>(Registers[r2].to_ullong());
+
+		if (WrtEnable[0])
+		{
+			Registers[w1] = WrtData;
+		}
 	}
 
 	void OutputRF()
@@ -101,7 +111,7 @@ public:
 
 		unsigned long offset = ReadAddress.to_ulong();
 
-		string str=string("");
+		string str = string("");
 		for (size_t i = 0; i < 4; i++)
 		{
 			str += IMem[offset + i].to_string();
