@@ -154,6 +154,30 @@ public:
 	{
 		// TODO: implement!
 
+		unsigned long offset = Address.to_ulong();
+
+		if (readmem[0])
+		{
+			string str = string("");
+			for (size_t i = 0; i < 4; i++)
+			{
+				str += DMem[offset + i].to_string();
+			}
+			readdata = bitset<32>(str);
+			return readdata;
+		}
+		else if (writemem[0])
+		{
+			string str = WriteData.to_string();
+
+			for (size_t i = 0; i < 4; i++)
+			{
+				string bt = str.substr(0, 8);
+				DMem[offset + i] = bitset<8>(bt);
+				str = str.substr(8);
+			}
+		}
+
 		return NULL;
 	}
 
