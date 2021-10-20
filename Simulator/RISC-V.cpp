@@ -1,4 +1,4 @@
-#include<iostream>
+﻿#include<iostream>
 #include<string>
 #include<vector>
 #include<bitset>
@@ -75,8 +75,30 @@ public:
 	bitset<64> ALUOperation(bitset<3> ALUOP, bitset<64> oprand1, bitset<64> oprand2)
 	{
 		// TODO: implement!
-
-		return NULL;
+		unsigned long long aluop = ALUOP.to_ullong();
+		long long result  = 0;
+		if (aluop  == ADDU)
+		{
+			result  = oprand1.to_ullong() + oprand2.to_ullong();
+		}
+		else if (aluop  == SUBU)
+		{
+			result  = oprand1.to_ullong() - oprand2.to_ullong();
+		}
+		else if (aluop  == AND)
+		{
+			result  = oprand1.to_ullong() & oprand2.to_ullong();
+		}
+		else if (aluop  == OR)
+		{
+			result  = oprand1.to_ullong() | oprand2.to_ullong();
+		}
+		else if (aluop  == NOR)
+		{
+			result  = oprand1.to_ullong() ^ oprand2.to_ullong();
+		}
+		ALUresult  = bitset<64>(result);
+		return ALUresult;
 	}
 };
 
